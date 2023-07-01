@@ -26,10 +26,13 @@ describe('throwCustomError', () => {
 
 describe('rejectCustomError', () => {
   test('should reject custom error', async () => {
-    try {
-      await rejectCustomError();
-    } catch (e) {
-      expect((e as MyAwesomeError).message).toMatch('This is my awesome custom error!');
-    }
+    await expect(rejectCustomError()).rejects.toThrow(MyAwesomeError);
+
+    // try {
+    //   await rejectCustomError();
+    // } catch (e) {
+    //   expect((e instanceof MyAwesomeError)).toBe(true);
+    //   // expect((e as MyAwesomeError).message).toMatch(new MyAwesomeError().message);
+    // }
   });
 });
